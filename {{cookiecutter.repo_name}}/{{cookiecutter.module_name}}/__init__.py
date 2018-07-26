@@ -11,7 +11,7 @@ class PluginApp(AppConfig):
         author = '{{cookiecutter.author_name}}'
         description = ugettext_lazy('{{cookiecutter.short_description}}')
         visible = True
-        version = '0.0.0'
+        version = '0.0.1'
 
     def ready(self):
         from . import signals  # NOQA
