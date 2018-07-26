@@ -25,7 +25,7 @@ cmdclass = {
 
 setup(
     name='{{cookiecutter.repo_name}}',
-    version='1.0.0',
+    version='0.0.1',
     description='{{cookiecutter.short_description}}',
     long_description=long_description,
     url='{{cookiecutter.repo_url}}',
