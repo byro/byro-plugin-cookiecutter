@@ -32,5 +32,15 @@ Now, change to the newly created directory::
 
 Voila, there's your plugin structure!
 
+Next steps
+----------
+
+Plese refer to the `byro developer documentation`_ to see what you can do with
+byro.
+
+If your project is hosted on GitHub, please add the ``byro-plugin`` tag, to
+help others see what byro is used for.
+
 .. _byro: https://github.com/byro/byro
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _byro developer documentation: https://byro.readthedocs.io/en/latest/developer/plugins/
