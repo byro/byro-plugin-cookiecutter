@@ -1,15 +1,15 @@
 from django.apps import AppConfig
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import gettext_lazy as _
 
 
 class PluginApp(AppConfig):
     name = '{{cookiecutter.module_name}}'
-    verbose_name = '{{cookiecutter.human_name}}'
+    verbose_name = _('{{cookiecutter.human_name}}')
 
     class ByroPluginMeta:
-        name = ugettext_lazy('{{cookiecutter.human_name}}')
+        name = _('{{cookiecutter.human_name}}')
         author = '{{cookiecutter.author_name}}'
-        description = ugettext_lazy('{{cookiecutter.short_description}}')
+        description = _('{{cookiecutter.short_description}}')
         visible = True
         version = '0.0.1'
 
