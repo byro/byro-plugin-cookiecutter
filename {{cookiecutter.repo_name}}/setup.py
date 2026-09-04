@@ -1,44 +1,24 @@
-import os
-from distutils.command.build import build
-
-from django.core import management
-from setuptools import setup, find_packages
+from setuptools import setup
+from setuptools.command.build_py import build_py
 
 
-try:
-    with open(os.path.join(os.path.dirname(__file__), 'README.rst'), encoding='utf-8') as f:
-        long_description = f.read()
-except:
-    long_description = ''
+class CustomBuild(build_py):
+    """Compile translations when building in an environment that has Django.
 
+    Isolated builds (plain ``pip install`` / ``python -m build``) have no Django
+    available; they ship the ``.po`` sources only. byro's
+    ``install_local_plugins.sh`` installs with ``--no-build-isolation`` so the
+    ``.mo`` files are generated there.
+    """
 
-class CustomBuild(build):
     def run(self):
-        management.call_command('compilemessages', verbosity=1, interactive=False)
-        build.run(self)
+        try:
+            from django.core import management
+        except ModuleNotFoundError:
+            pass
+        else:
+            management.call_command("compilemessages", verbosity=1)
+        super().run()
 
 
-cmdclass = {
-    'build': CustomBuild
-}
-
-
-setup(
-    name='{{cookiecutter.repo_name}}',
-    version='0.0.1',
-    description='{{cookiecutter.short_description}}',
-    long_description=long_description,
-    url='{{cookiecutter.repo_url}}',
-    author='{{cookiecutter.author_name}}',
-    author_email='{{cookiecutter.author_email}}',
-    license='Apache Software License',
-
-    install_requires=[],
-    packages=find_packages(exclude=['tests', 'tests.*']),
-    include_package_data=True,
-    cmdclass=cmdclass,
-    entry_points="""
-[byro.plugin]
-{{cookiecutter.module_name}}={{cookiecutter.module_name}}:ByroPluginMeta
-""",
-)
+setup(cmdclass={"build_py": CustomBuild})

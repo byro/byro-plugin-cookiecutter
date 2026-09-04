@@ -61,3 +61,14 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Virtual environments
+.venv/
+venv/
+
+# byro creates this relative to the cwd when its settings are imported (tests)
+data/
+
+# Editors
+.idea/
+.vscode/

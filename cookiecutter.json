@@ -1,10 +1,11 @@
 {
 	"repo_name": "byro-superplugin",
-	"repo_url": "GitHub repository URL",
-	"module_name": "byro_superplugin",
+	"repo_url": "https://github.com/yourname/{{ cookiecutter.repo_name }}",
+	"module_name": "{{ cookiecutter.repo_name.lower().replace('-', '_') }}",
 	"human_name": "The byro super plugin",
 	"author_name": "Your name",
-	"author_email": "Your email",
-	"year": "Current year",
-	"short_description": "Short description"
+	"author_email": "you@example.org",
+	"year": "{% now 'utc', '%Y' %}",
+	"short_description": "Short description",
+	"_copy_without_render": [".github/workflows/*.yml"]
 }
